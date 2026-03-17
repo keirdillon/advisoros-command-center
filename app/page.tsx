@@ -560,8 +560,8 @@ function TabExperience() {
       stage:"01", phase:"Discovery", title:"Advisor Finds AdvisorOS", icon:"\u{1F50D}",
       duration:"Day 0", color:C.midGray,
       touchpoints:["LinkedIn post or DM from founder","Referral from another advisor","Direct visit to theadvisoros.com"],
-      experience:"The advisor lands on theadvisoros.com. They see a clean, premium landing page that speaks directly to their pain — no time for marketing, inconsistent posting, generic content from DIY tools. The headline hits: 'Your clients deserve a world-class brand. You deserve a marketing team that doesn\u2019t need managing.' Sample output shows real Brand Playbook quality. Pricing is transparent. No 'book a call to learn more' gatekeeping.",
-      whatTheySee:"Landing page: hero section with Instrument Serif headline, pain points section (3-4 advisor frustrations), How It Works (3 steps with walnut step numbers), What\u2019s Included (foundation + monthly breakdown), transparent pricing ($4,997 + $997/mo), FAQ (compliance, time, cancellation), and bold Get Started CTA buttons throughout.",
+      experience:"The advisor lands on theadvisoros.com. They see a clean, premium landing page that speaks directly to their pain — no time for marketing, inconsistent posting, generic content from DIY tools. The headline hits: 'Your clients deserve a world-class brand. You deserve a marketing team that doesn’t need managing.' Sample output shows real Brand Playbook quality. Pricing is transparent. No 'book a call to learn more' gatekeeping.",
+      whatTheySee:"Landing page: hero section with Instrument Serif headline, pain points section (3-4 advisor frustrations), How It Works (3 steps with walnut step numbers), What’s Included (foundation + monthly breakdown), transparent pricing ($4,997 + $997/mo), FAQ (compliance, time, cancellation), and bold Get Started CTA buttons throughout.",
       emotion:"Intrigued. This feels different from other marketing tools. It looks more premium than most advisor websites. The sample output is better than what they currently have. Transparent pricing builds immediate trust.",
       systemAction:"No system action. Static Next.js landing page. Stripe Checkout wired to all CTA buttons. Analytics tracking page views.",
     },
@@ -572,55 +572,55 @@ function TabExperience() {
       experience:"They click Get Started. Stripe Checkout opens — clean, familiar, trustworthy. Foundation fee plus monthly retainer displayed clearly. They enter their card. Payment processes instantly. They are redirected to a Welcome page with a green LED 'Payment Confirmed' indicator and a 4-step onboarding timeline with walnut-accented step numbers.",
       whatTheySee:"Stripe Checkout with AdvisorOS branding. Then the Welcome page: Step 1 (Payment — green checkmark), Step 2 (Complete Brand Intake — prominent walnut CTA button linking to Typeform), Step 3 (Book Kickoff Call), Step 4 (Receive Brand Playbook). Plus a link to sign into their new portal.",
       emotion:"Excited and reassured. The payment was smooth. The welcome page immediately shows what happens next with no ambiguity. They feel momentum — something is already in motion.",
-      systemAction:"Stripe checkout.session.completed webhook fires \u2192 Advisor record created in Postgres (lifecycle: 'paid') \u2192 Stripe customer ID and subscription ID stored \u2192 Magic link generated \u2192 Welcome email sent via Resend (branded Rams template with walnut accent, AdvisorOS wordmark) \u2192 Typeform intake link included.",
+      systemAction:"Stripe checkout.session.completed webhook fires → Advisor record created in Postgres (lifecycle: 'paid') → Stripe customer ID and subscription ID stored → Magic link generated → Welcome email sent via Resend (branded Rams template with walnut accent, AdvisorOS wordmark) → Typeform intake link included.",
     },
     {
       stage:"03", phase:"Brand Intake", title:"24-Question Creative Consultation", icon:"\u{1F4CB}",
-      duration:"Days 1\u20133", color:C.orange,
+      duration:"Days 1–3", color:C.orange,
       touchpoints:["Welcome email with Typeform link","Day 2 reminder if not started","Typeform intake (5 sections, ~20 min)","Completion confirmation email"],
       experience:"The advisor receives a branded email with the intake link. The Typeform is organized into 5 sections that feel like a creative consultation, not a boring form. They describe their ideal client, articulate what makes them different, explain what clients love about them. The final Brand Aesthetic section is the fun part: style sliders (Modern to Classic, Bold to Understated, Luxury to Accessible), uploading 3-5 inspiration images — a Porsche, a Rolex, their favorite hotel lobby, a website they admire — and picking colors they are drawn to.",
       whatTheySee:"Section 1: About You and Your Firm (7 questions). Section 2: Ideal Client and Differentiation (7 questions). Section 3: Brand and Personality (3 questions). Section 4: Goals (3 questions). Section 5: Brand Aesthetic (6 style sliders, image upload for 3-5 inspiration images, color gut check with visual swatches).",
       emotion:"Engaged and self-reflective. Many advisors have never articulated their brand this clearly. The process itself is valuable — they are thinking about their business in ways they have not before.",
-      systemAction:"Typeform webhook \u2192 IntakeSubmission created (full JSON payload) \u2192 Inspiration images downloaded from Typeform CDN to Cloudinary \u2192 Claude analyzes each image \u2192 Text descriptions embedded in profile \u2192 Lifecycle status: 'intake_completed' \u2192 Admin notification.",
+      systemAction:"Typeform webhook → IntakeSubmission created (full JSON payload) → Inspiration images downloaded from Typeform CDN to Cloudinary → Claude analyzes each image → Text descriptions embedded in profile → Lifecycle status: 'intake_completed' → Admin notification.",
     },
     {
       stage:"04", phase:"Kickoff Call", title:"20-Minute Strategic Deep Dive", icon:"\u{1F4DE}",
-      duration:"Days 3\u20135", color:C.woodMid,
+      duration:"Days 3–5", color:C.woodMid,
       touchpoints:["Calendly booking link","20-minute call","Post-call confirmation email"],
       experience:"The advisor books a call via Calendly. The founder does not re-ask form questions. Instead they go deeper: 'Tell me what that first conversation with a new client usually looks like.' They listen for natural language, personality cues, excitement, frustration. They end with a specific insight that cements the relationship.",
       whatTheySee:"Calendly booking page, then a Zoom or phone call. This is a purely human touchpoint — no product interface involved.",
       emotion:"Heard, understood, and confident. This is the highest-trust moment in the entire journey.",
-      systemAction:"Founder fills structured KickoffNotes template in admin \u2192 'Compile Brand Profile' triggered \u2192 Intake data + call notes assembled into a Claude-ready creative brief \u2192 Brand Profile stored in Postgres (versioned).",
+      systemAction:"Founder fills structured KickoffNotes template in admin → 'Compile Brand Profile' triggered → Intake data + call notes assembled into a Claude-ready creative brief → Brand Profile stored in Postgres (versioned).",
     },
     {
       stage:"05", phase:"AI Generation", title:"Claude Builds the Complete Brand", icon:"\u{1F916}",
-      duration:"Days 5\u201312 (advisor waits)", color:C.green,
+      duration:"Days 5–12 (advisor waits)", color:C.green,
       touchpoints:["No advisor touchpoint","Founder reviews in admin panel"],
       experience:"The advisor waits. Behind the scenes, Claude runs 6 sequential API calls, each building on the last. The founder reviews every section in the admin panel, rates quality 1-5, and edits anything that is not exceptional.",
       whatTheySee:"If they log into the portal during this phase, they see the onboarding stepper with 'Brand Playbook Delivered' as the next step. The status LED pulses orange — 'Building.'",
       emotion:"Anticipation. The 5-7 day wait is intentional — it signals that real work is being done.",
-      systemAction:"Admin triggers generation \u2192 Call 1: Brand Strategy \u2192 Call 2: Messaging \u2192 Call 3: Voice and Tone \u2192 Call 4: Visual Identity \u2192 Call 5: Bio and About Copy \u2192 Call 6: Content Strategy \u2192 Assembly \u2192 Admin reviews, edits, rates \u2192 Pushes to portal.",
+      systemAction:"Admin triggers generation → Call 1: Brand Strategy → Call 2: Messaging → Call 3: Voice and Tone → Call 4: Visual Identity → Call 5: Bio and About Copy → Call 6: Content Strategy → Assembly → Admin reviews, edits, rates → Pushes to portal.",
     },
     {
-      stage:"06", phase:"Brand Reveal", title:"The Wow Moment \u2014 Brand Playbook Delivered", icon:"\u2728",
-      duration:"Days 12\u201317", color:C.green,
+      stage:"06", phase:"Brand Reveal", title:"The Wow Moment — Brand Playbook Delivered", icon:"✨",
+      duration:"Days 12–17", color:C.green,
       touchpoints:["'Your Brand Playbook is ready' email","Portal: Brand Playbook review screen","Edit with AI chat","Request Revision notes","Celebration on full approval"],
       experience:"The advisor gets an email: 'Your Brand Playbook is ready for review.' They log in. The first thing they see is their firm name rendered in a beautiful serif font, on a background of their primary brand color. Then 7 expandable sections, each a piece of their brand.",
       whatTheySee:"Hero section: typographic logo on primary brand color background, tagline, one-liner. Progress bar: 'X of 7 sections signed off'. Seven expandable cards with Sign Off, Request Revision, and Edit with AI buttons.",
       emotion:"This is the moment that justifies the price. If the output is exceptional, the advisor feels like they hired a world-class agency.",
-      systemAction:"Each section Sign Off updates BrandProfile status \u2192 Edit with AI: slide-out panel with scoped Claude chat \u2192 All 7 signed off: lifecycle \u2192 'active', monthly retainer billing starts.",
+      systemAction:"Each section Sign Off updates BrandProfile status → Edit with AI: slide-out panel with scoped Claude chat → All 7 signed off: lifecycle → 'active', monthly retainer billing starts.",
     },
     {
-      stage:"07", phase:"First Content", title:"Monthly Package \u2014 Content Engine Ignites", icon:"\u{1F4E6}",
-      duration:"Days 25\u201330", color:C.green,
+      stage:"07", phase:"First Content", title:"Monthly Package — Content Engine Ignites", icon:"\u{1F4E6}",
+      duration:"Days 25–30", color:C.green,
       touchpoints:["Monthly Brief reminder (1st of month)","Monthly Brief form (5 min)","Content delivered notification","Portal: Monthly Package review","Edit with AI on any piece","Compliance workflow","Download and post"],
       experience:"Around the 1st, the advisor gets a Monthly Brief reminder. Six quick questions — under 5 minutes. Around the 10th, the email arrives: 'Your March content package is ready.' They log in to find a grid of content: 8 LinkedIn posts, 2 blog articles, an email draft, 4 branded graphics, bonus captions.",
       whatTheySee:"Strategy Note in a walnut-accented panel at top. Content cards in seam grid with type labels, platform badges, expandable text preview. Three buttons per piece. Compliance badges. Download buttons.",
       emotion:"Relief and delight. Professional, on-brand content is just there — ready to go.",
-      systemAction:"1st: Monthly Brief reminder \u2192 5th: Brief due \u2192 6th: Generation triggers (7 Claude calls) \u2192 Admin reviews \u2192 Pushes to portal \u2192 Advisor reviews, signs off, handles compliance \u2192 Downloads and posts.",
+      systemAction:"1st: Monthly Brief reminder → 5th: Brief due → 6th: Generation triggers (7 Claude calls) → Admin reviews → Pushes to portal → Advisor reviews, signs off, handles compliance → Downloads and posts.",
     },
     {
-      stage:"08", phase:"Ongoing", title:"The Monthly Rhythm \u2014 Retention Engine", icon:"\u{1F504}",
+      stage:"08", phase:"Ongoing", title:"The Monthly Rhythm — Retention Engine", icon:"\u{1F504}",
       duration:"Every month, indefinitely", color:C.green,
       touchpoints:["Monthly Brief (5 min)","Content delivery (~10th)","Review and approve","Post to channels","Quarterly satisfaction check"],
       experience:"The advisor settles into a rhythm. Every month: 5 minutes on the Brief, content arrives, review it (80%+ approved first-pass), tweak anything with Edit with AI, handle compliance, download, post. Total monthly time: about 30 minutes.",
@@ -719,7 +719,7 @@ function TabExperience() {
       <SH num="03" title="Experience KPIs" sub="What success looks like at each stage" />
       <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:1, background:C.lightGray, border:`1px solid ${C.lightGray}`, borderRadius:2, overflow:"hidden" }}>
         <MetricCard label="Intake Completion" value="<20m" sub="24 questions across 5 sections" stripColor={C.orange} />
-        <MetricCard label="Foundation Delivery" value="5\u20137d" sub="From kickoff call to playbook" stripColor={C.woodMid} />
+        <MetricCard label="Foundation Delivery" value="5–7d" sub="From kickoff call to playbook" stripColor={C.woodMid} />
         <MetricCard label="First-Pass Approval" value="80%+" sub="Content approved without changes" stripColor={C.green} accent={C.green} />
         <MetricCard label="Monthly Advisor Time" value="~30m" sub="Brief + review + approve + post" stripColor={C.green} />
       </div>
@@ -777,9 +777,9 @@ function TabExit() {
     <div style={{ display:"flex", flexDirection:"column", gap:0 }}>
 
       <div style={{ ...seamGrid("repeat(4,1fr)"), marginBottom:36 }}>
-        <MetricCard label="Median ARR Multiple" value="4\u20137\u00D7" sub="Private SaaS (2025\u20132026)" stripColor={C.green} />
+        <MetricCard label="Median ARR Multiple" value="4–7×" sub="Private SaaS (2025–2026)" stripColor={C.green} />
         <MetricCard label="Vertical Premium" value="+30%" sub="Financial services vs. horizontal" stripColor={C.woodMid} />
-        <MetricCard label="AI-Native Multiple" value="7\u20139\u00D7" sub="Vertical SaaS + embedded AI" stripColor={C.orange} />
+        <MetricCard label="AI-Native Multiple" value="7–9×" sub="Vertical SaaS + embedded AI" stripColor={C.orange} />
         <MetricCard label="Rule of 40 Target" value="40+" sub="Growth % + Profit Margin %" stripColor={C.green} />
       </div>
 
@@ -788,21 +788,21 @@ function TabExit() {
         <div style={{ position:"absolute", top:0, right:0, width:"30%", height:"100%", backgroundImage:`radial-gradient(circle, ${C.charcoal} 1px, transparent 1px)`, backgroundSize:"8px 8px", opacity:0.3, pointerEvents:"none" as const }} />
         <div style={caption({ color:C.woodLight, marginBottom:14 })}>THE OPPORTUNITY</div>
         <div style={{ fontSize:15, color:"rgba(255,255,255,0.8)", lineHeight:1.7, fontFamily:FB, maxWidth:800 }}>
-          No platform today delivers AI-native brand strategy + visual identity + content engine for financial advisors. The incumbents — Snappy Kraken (~7,000 advisors, $12.6M raised) and FMG Suite (4 acquisitions, thousands of advisors) — are content libraries and campaign automation tools. They help advisors <em>distribute</em> marketing. Advisor OS helps advisors <em>build</em> a differentiated brand from scratch — replacing a $60\u2013120K/year agency engagement with a $17K/year platform.
+          No platform today delivers AI-native brand strategy + visual identity + content engine for financial advisors. The incumbents — Snappy Kraken (~7,000 advisors, $12.6M raised) and FMG Suite (4 acquisitions, thousands of advisors) — are content libraries and campaign automation tools. They help advisors <em>distribute</em> marketing. Advisor OS helps advisors <em>build</em> a differentiated brand from scratch — replacing a $60–120K/year agency engagement with a $17K/year platform.
         </div>
       </div>
 
       <ExitTable headers={["Platform", "Founded", "Users", "Funding", "Core Model", "Gap"]} rows={[
         ["Snappy Kraken", "2016", "~7,000", "$12.6M", "Marketing automation + campaigns", "No brand strategy"],
         ["FMG Suite", "2011", "Thousands", "Undisclosed", "Content library + websites", "Template-based, no differentiation"],
-        ["AdvisorStream", "\u2014", "\u2014", "\u2014", "Content curation", "Aggregated, not custom"],
+        ["AdvisorStream", "—", "—", "—", "Content curation", "Aggregated, not custom"],
         ["Advisor OS", "2026", "Pre-launch", "Bootstrapped", "AI brand + visuals + content", "Full-stack agency replacement"],
       ]} compact />
 
       <div style={{ background:C.cream, border:`1px solid ${C.offWhite}`, borderRadius:2, padding:"16px 24px", marginTop:8 }}>
         <div style={caption({ color:C.woodMid, marginBottom:8 })}>COMPETITIVE POSITIONING</div>
         <div style={{ fontSize:14, color:C.warmGray, lineHeight:1.7 }}>
-          Advisor OS competes with <strong style={{color:C.nearBlack}}>$5,000\u2013$10,000/month marketing agencies</strong>, not with Snappy Kraken or FMG Suite. The platform compresses 80% of what an agency delivers into an AI-powered system at 15% of the cost.
+          Advisor OS competes with <strong style={{color:C.nearBlack}}>$5,000–$10,000/month marketing agencies</strong>, not with Snappy Kraken or FMG Suite. The platform compresses 80% of what an agency delivers into an AI-powered system at 15% of the cost.
         </div>
       </div>
 
@@ -811,13 +811,13 @@ function TabExit() {
       <SH num="02" title="Valuation Framework" />
       <div style={{ ...seamGrid("1fr 1fr"), marginBottom:16 }}>
         <div style={{ ...panelBg, borderLeft:`4px solid ${C.green}` }}>
-          <div style={caption({ color:C.green, marginBottom:12 })}>WHAT GETS YOU 3\u00D7 (BASELINE)</div>
-          {["$1\u20132M ARR with moderate growth (20\u201330% YoY)","Churn under 5% monthly, NRR around 100%","Strong product but limited distribution proof","Small team, lean operations, approaching profitability","Single-channel distribution (Coastal Wealth only)"].map((t,i) => (
+          <div style={caption({ color:C.green, marginBottom:12 })}>WHAT GETS YOU 3× (BASELINE)</div>
+          {["$1–2M ARR with moderate growth (20–30% YoY)","Churn under 5% monthly, NRR around 100%","Strong product but limited distribution proof","Small team, lean operations, approaching profitability","Single-channel distribution (Coastal Wealth only)"].map((t,i) => (
             <StatusItem key={i} text={t} color="green" />
           ))}
         </div>
         <div style={{ ...panelBg, borderLeft:`4px solid ${C.woodMid}` }}>
-          <div style={caption({ color:C.woodMid, marginBottom:12 })}>WHAT GETS YOU 5\u20137\u00D7 (PREMIUM)</div>
+          <div style={caption({ color:C.woodMid, marginBottom:12 })}>WHAT GETS YOU 5–7× (PREMIUM)</div>
           {["$5M+ ARR growing 50%+ YoY","NRR above 110%, monthly churn under 3%","Multi-firm distribution (3+ enterprise accounts)","Rule of 40 score above 60","AI-native with demonstrable cost advantage vs. incumbents"].map((t,i) => (
             <StatusItem key={i} text={t} color="orange" />
           ))}
@@ -826,9 +826,9 @@ function TabExit() {
 
       <div style={{ ...seamGrid("1fr"), marginBottom:0 }}>
         {[
-          { metric:"Net Revenue Retention (NRR)", why:"Companies with NRR above 120% trade at 8\u00D7+ revenue. Below 90% drops to ~1.2\u00D7. Nonlinear.", led:"green" },
-          { metric:"Rule of 40", why:"Growth rate + profit margin \u2265 40. Strongest single predictor of valuation.", led:"green" },
-          { metric:"AI-Native Architecture", why:"AI-referenced deals comprised 72% of all SaaS transactions in 2025 (12\u00D7 increase since 2018).", led:"orange" },
+          { metric:"Net Revenue Retention (NRR)", why:"Companies with NRR above 120% trade at 8×+ revenue. Below 90% drops to ~1.2×. Nonlinear.", led:"green" },
+          { metric:"Rule of 40", why:"Growth rate + profit margin ≥ 40. Strongest single predictor of valuation.", led:"green" },
+          { metric:"AI-Native Architecture", why:"AI-referenced deals comprised 72% of all SaaS transactions in 2025 (12× increase since 2018).", led:"orange" },
           { metric:"Vertical Depth & Switching Costs", why:"Vertical SaaS earns its premium through deeper workflow integration, lower churn, and regulatory expertise.", led:"green" },
           { metric:"Capital Efficiency", why:"AI startups reaching $5M ARR in 24 months (vs. 37 months for traditional SaaS). Revenue per employee of $1M+ is the new standard.", led:"orange" },
         ].map((d,i) => (
@@ -853,7 +853,7 @@ function TabExit() {
           {[
             { val:"$5,000", label:"SETUP / ONBOARDING", desc:"Brand strategy questionnaire, visual identity build, positioning & competitive analysis, initial content library" },
             { val:"$1,000", label:"MONTHLY RECURRING", desc:"Monthly content engine (Instagram + LinkedIn scripts), brand refinements, performance insights, platform access" },
-            { val:"$17K", label:"YEAR-ONE LTV", desc:"$5K setup + $12K annual recurring. Replaces $60\u2013120K agency spend \u2014 85% cost reduction for the advisor." },
+            { val:"$17K", label:"YEAR-ONE LTV", desc:"$5K setup + $12K annual recurring. Replaces $60–120K agency spend — 85% cost reduction for the advisor." },
           ].map((p,i) => (
             <div key={i}>
               <div style={{ fontFamily:FD, fontSize:36, color:C.warmWhite, lineHeight:1 }}>{p.val}</div>
@@ -867,7 +867,7 @@ function TabExit() {
       <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:1, background:C.lightGray, border:`1px solid ${C.lightGray}`, borderRadius:2, overflow:"hidden", marginBottom:24 }}>
         <div style={{ ...panelBg, position:"relative", overflow:"hidden" }}>
           <div style={{ position:"absolute", top:0, right:0, width:"20%", height:"100%", ...perfBg, opacity:0.15, pointerEvents:"none" as const }} />
-          <div style={caption({ marginBottom:12 })}>LOW \u2014 FOUNDATION</div>
+          <div style={caption({ marginBottom:12 })}>LOW — FOUNDATION</div>
           <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12, marginBottom:16 }}>
             {[{l:"Advisors",v:"150"},{l:"MRR",v:"$150K"},{l:"ARR",v:"$1.8M"},{l:"Setup Rev",v:"$750K"}].map((s,i) => (
               <div key={i}><div style={{ fontSize:10, letterSpacing:1, textTransform:"uppercase" as const, color:C.midGray }}>{s.l}</div><div style={{ fontFamily:FD, fontSize:24, color:C.nearBlack }}>{s.v}</div></div>
@@ -875,52 +875,52 @@ function TabExit() {
           </div>
           <div style={{ borderTop:`1px solid ${C.offWhite}`, paddingTop:14, marginBottom:12 }}>
             <div style={{ fontSize:10, letterSpacing:1, textTransform:"uppercase" as const, color:C.midGray, marginBottom:4 }}>VALUATION</div>
-            <div style={{ fontFamily:FD, fontSize:32, color:C.midGray }}>$3.6\u20135.4M</div>
-            <div style={{ fontSize:12, color:C.midGray }}>2\u20133\u00D7 ARR</div>
+            <div style={{ fontFamily:FD, fontSize:32, color:C.midGray }}>$3.6–5.4M</div>
+            <div style={{ fontSize:12, color:C.midGray }}>2–3× ARR</div>
           </div>
           <div style={{ fontSize:13, color:C.warmGray, lineHeight:1.65 }}>Coastal Wealth network partially penetrated. Concept proven but limited traction beyond initial network.</div>
         </div>
 
         <div style={{ background:C.warmWhite, padding:28, position:"relative", overflow:"hidden", borderLeft:`4px solid ${C.woodMid}` }}>
           <div style={{ position:"absolute", top:0, right:0, width:"25%", height:"100%", ...perfBg, opacity:0.2, pointerEvents:"none" as const }} />
-          <div style={caption({ color:C.woodMid, marginBottom:12 })}>MEDIUM \u2014 TARGET</div>
+          <div style={caption({ color:C.woodMid, marginBottom:12 })}>MEDIUM — TARGET</div>
           <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12, marginBottom:16 }}>
-            {[{l:"Advisors",v:"400\u2013500"},{l:"MRR",v:"$400\u2013500K"},{l:"ARR",v:"$4.8\u20136M"},{l:"Setup Rev",v:"$2\u20132.5M"}].map((s,i) => (
+            {[{l:"Advisors",v:"400–500"},{l:"MRR",v:"$400–500K"},{l:"ARR",v:"$4.8–6M"},{l:"Setup Rev",v:"$2–2.5M"}].map((s,i) => (
               <div key={i}><div style={{ fontSize:10, letterSpacing:1, textTransform:"uppercase" as const, color:C.midGray }}>{s.l}</div><div style={{ fontFamily:FD, fontSize:24, color:C.nearBlack }}>{s.v}</div></div>
             ))}
           </div>
           <div style={{ borderTop:`1px solid ${C.offWhite}`, paddingTop:14, marginBottom:12 }}>
             <div style={{ fontSize:10, letterSpacing:1, textTransform:"uppercase" as const, color:C.midGray, marginBottom:4 }}>VALUATION</div>
-            <div style={{ fontFamily:FD, fontSize:32, color:C.woodMid }}>$15\u201330M</div>
-            <div style={{ fontSize:12, color:C.woodMid }}>3\u20135\u00D7 ARR (strategic premium)</div>
+            <div style={{ fontFamily:FD, fontSize:32, color:C.woodMid }}>$15–30M</div>
+            <div style={{ fontSize:12, color:C.woodMid }}>3–5× ARR (strategic premium)</div>
           </div>
-          <div style={{ fontSize:13, color:C.warmGray, lineHeight:1.65 }}>Coastal + 1\u20132 MassMutual firms. Repeatable sales motion. <strong style={{color:C.nearBlack}}>Realistic sweet spot for 18-month exit.</strong></div>
+          <div style={{ fontSize:13, color:C.warmGray, lineHeight:1.65 }}>Coastal + 1–2 MassMutual firms. Repeatable sales motion. <strong style={{color:C.nearBlack}}>Realistic sweet spot for 18-month exit.</strong></div>
         </div>
 
         <div style={{ ...panelBg, position:"relative", overflow:"hidden" }}>
           <div style={{ position:"absolute", top:0, right:0, width:"20%", height:"100%", ...perfBg, opacity:0.15, pointerEvents:"none" as const }} />
-          <div style={caption({ color:C.green, marginBottom:12 })}>HIGH \u2014 BREAKOUT</div>
+          <div style={caption({ color:C.green, marginBottom:12 })}>HIGH — BREAKOUT</div>
           <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12, marginBottom:16 }}>
-            {[{l:"Advisors",v:"800\u20131K+"},{l:"MRR",v:"$800K\u20131M"},{l:"ARR",v:"$9.6\u201312M"},{l:"Setup Rev",v:"$4\u20135M"}].map((s,i) => (
+            {[{l:"Advisors",v:"800–1K+"},{l:"MRR",v:"$800K–1M"},{l:"ARR",v:"$9.6–12M"},{l:"Setup Rev",v:"$4–5M"}].map((s,i) => (
               <div key={i}><div style={{ fontSize:10, letterSpacing:1, textTransform:"uppercase" as const, color:C.midGray }}>{s.l}</div><div style={{ fontFamily:FD, fontSize:24, color:C.nearBlack }}>{s.v}</div></div>
             ))}
           </div>
           <div style={{ borderTop:`1px solid ${C.offWhite}`, paddingTop:14, marginBottom:12 }}>
             <div style={{ fontSize:10, letterSpacing:1, textTransform:"uppercase" as const, color:C.midGray, marginBottom:4 }}>VALUATION</div>
-            <div style={{ fontFamily:FD, fontSize:32, color:C.green }}>$48\u201384M</div>
-            <div style={{ fontSize:12, color:C.green }}>5\u20137\u00D7 ARR (AI-native premium)</div>
+            <div style={{ fontFamily:FD, fontSize:32, color:C.green }}>$48–84M</div>
+            <div style={{ fontSize:12, color:C.green }}>5–7× ARR (AI-native premium)</div>
           </div>
-          <div style={{ fontSize:13, color:C.warmGray, lineHeight:1.65 }}>Multi-BD distribution. MassMutual corporate partnership. 60\u201380 advisors/month. $1M+ revenue per employee.</div>
+          <div style={{ fontSize:13, color:C.warmGray, lineHeight:1.65 }}>Multi-BD distribution. MassMutual corporate partnership. 60–80 advisors/month. $1M+ revenue per employee.</div>
         </div>
       </div>
 
       <ExitTable headers={["Month", "Advisors", "MRR", "ARR", "Setup Fees", "Scenario Gate"]} rows={[
         ["3", "30", "$30K", "$360K", "$150K", "All scenarios aligned"],
-        ["6", "75\u2013100", "$75\u2013100K", "$900K\u20131.2M", "$375\u2013500K", "Low diverges here"],
-        ["9", "120\u2013250", "$120\u2013250K", "$1.4\u20133.0M", "$600K\u20131.25M", "Medium emerging"],
-        ["12", "150\u2013500", "$150\u2013500K", "$1.8\u20136.0M", "$750K\u20132.5M", "Scenarios fully diverge"],
-        ["15", "150\u2013750", "$150\u2013750K", "$1.8\u20139.0M", "$750K\u20133.75M", "Enterprise deals required for High"],
-        ["18", "150\u20131,000+", "$150K\u20131M+", "$1.8\u201312M+", "$750K\u20135M+", "Exit window opens"],
+        ["6", "75–100", "$75–100K", "$900K–1.2M", "$375–500K", "Low diverges here"],
+        ["9", "120–250", "$120–250K", "$1.4–3.0M", "$600K–1.25M", "Medium emerging"],
+        ["12", "150–500", "$150–500K", "$1.8–6.0M", "$750K–2.5M", "Scenarios fully diverge"],
+        ["15", "150–750", "$150–750K", "$1.8–9.0M", "$750K–3.75M", "Enterprise deals required for High"],
+        ["18", "150–1,000+", "$150K–1M+", "$1.8–12M+", "$750K–5M+", "Exit window opens"],
       ]} compact />
 
       <WalnutDivider />
@@ -928,12 +928,12 @@ function TabExit() {
       <SH num="04" title="Metrics Buyers Scrutinize" />
       <ExitTable headers={["Metric", "Definition", "Premium Target", "Baseline", "Impact"]} rows={[
         ["MRR", "Recurring subscription revenue/month", "$500K+", "$150K+", "Primary valuation input"],
-        ["NRR", "Net revenue retention (expansion + churn)", "\u2265110%", "\u2265100%", "NRR >120% \u2192 8\u00D7+ multiples"],
+        ["NRR", "Net revenue retention (expansion + churn)", "≥110%", "≥100%", "NRR >120% → 8×+ multiples"],
         ["Logo Churn", "% customers lost per month", "<3%", "<5%", "Signals product-market fit"],
         ["CAC Payback", "Months to recoup acquisition cost", "<6 mo", "<12 mo", "Efficient growth = scalability"],
         ["Rule of 40", "Growth % + profit margin", ">60", ">40", "Strongest valuation predictor"],
-        ["LTV:CAC", "Lifetime value \u00F7 acquisition cost", ">5:1", ">3:1", "Unit economics health"],
-        ["Rev/Employee", "ARR \u00F7 headcount", ">$500K", ">$250K", "AI cos hitting $1M+"],
+        ["LTV:CAC", "Lifetime value ÷ acquisition cost", ">5:1", ">3:1", "Unit economics health"],
+        ["Rev/Employee", "ARR ÷ headcount", ">$500K", ">$250K", "AI cos hitting $1M+"],
         ["Gross Margin", "Revenue minus COGS", ">80%", ">70%", "Watch AI inference costs"],
       ]} compact />
 
@@ -941,31 +941,31 @@ function TabExit() {
 
       <SH num="05" title="Acquirer Landscape" />
       <div style={{ display:"flex", flexDirection:"column", gap:1, background:C.lightGray, border:`1px solid ${C.lightGray}`, borderRadius:2, overflow:"hidden" }}>
-        <ExitAccordion id="t1" title="Tier 1 \u2014 Wealthtech Platforms" subtitle="Building end-to-end advisor platforms. Marketing is the gap." badge="MOST LIKELY">
+        <ExitAccordion id="t1" title="Tier 1 — Wealthtech Platforms" subtitle="Building end-to-end advisor platforms. Marketing is the gap." badge="MOST LIKELY">
           <ExitTable headers={["Company", "Recent M&A", "Why They'd Buy", "Deal Range"]} rows={[
-            ["Orion Advisor Solutions", "Summit Wealth (2025), Redtail (2022), Brinker (2020)", "Missing top-of-funnel marketing/brand piece.", "$15\u201340M"],
-            ["Nitrogen (fka Riskalyze)", "Unbundling/rebundling suite", "Has risk + planning + research. Lacks growth/marketing layer.", "$10\u201325M"],
-            ["Envestnet", "Prolific acquirer across stack", "Largest ecosystem. Marketing deepens lock-in.", "$20\u201350M"],
+            ["Orion Advisor Solutions", "Summit Wealth (2025), Redtail (2022), Brinker (2020)", "Missing top-of-funnel marketing/brand piece.", "$15–40M"],
+            ["Nitrogen (fka Riskalyze)", "Unbundling/rebundling suite", "Has risk + planning + research. Lacks growth/marketing layer.", "$10–25M"],
+            ["Envestnet", "Prolific acquirer across stack", "Largest ecosystem. Marketing deepens lock-in.", "$20–50M"],
           ]} />
         </ExitAccordion>
-        <ExitAccordion id="t2" title="Tier 2 \u2014 Marketing Incumbents" subtitle="Snappy Kraken, FMG Suite, and their investors would rather absorb than compete." badge="LIKELY">
+        <ExitAccordion id="t2" title="Tier 2 — Marketing Incumbents" subtitle="Snappy Kraken, FMG Suite, and their investors would rather absorb than compete." badge="LIKELY">
           <ExitTable headers={["Company", "Profile", "Why They'd Buy", "Deal Range"]} rows={[
-            ["Snappy Kraken", "~7K advisors, $12.6M raised, FINTOP-backed", "Solves what they can\u2019t: differentiated brand strategy at scale.", "$10\u201320M"],
-            ["FMG Suite", "4 acquisitions, San Diego HQ", "Template model aging. AI-native leapfrogs roadmap.", "$10\u201320M"],
-            ["FINTOP Capital", "PE \u2014 advisor tech consolidation thesis", "Standalone portfolio co or merge into Snappy Kraken.", "$8\u201315M"],
+            ["Snappy Kraken", "~7K advisors, $12.6M raised, FINTOP-backed", "Solves what they can’t: differentiated brand strategy at scale.", "$10–20M"],
+            ["FMG Suite", "4 acquisitions, San Diego HQ", "Template model aging. AI-native leapfrogs roadmap.", "$10–20M"],
+            ["FINTOP Capital", "PE — advisor tech consolidation thesis", "Standalone portfolio co or merge into Snappy Kraken.", "$8–15M"],
           ]} />
         </ExitAccordion>
-        <ExitAccordion id="t3" title="Tier 3 \u2014 Broker-Dealers & Aggregators" subtitle="They don\u2019t want software revenue \u2014 they want advisor retention." badge="STRATEGIC">
+        <ExitAccordion id="t3" title="Tier 3 — Broker-Dealers & Aggregators" subtitle="They don’t want software revenue — they want advisor retention." badge="STRATEGIC">
           <ExitTable headers={["Company", "Advisors", "Why They'd Buy", "Deal Range"]} rows={[
-            ["MassMutual", "~10,000+", "Proven in Coastal \u2192 deploy across network.", "$20\u201350M"],
-            ["Osaic", "~10,000+", "Largest independent BD network.", "$15\u201330M"],
-            ["LPL Financial", "~23,000+", "Already investing in advisor tech.", "$20\u201340M"],
-            ["Cetera", "~12,000+", "Active in AI tools.", "$15\u201330M"],
+            ["MassMutual", "~10,000+", "Proven in Coastal → deploy across network.", "$20–50M"],
+            ["Osaic", "~10,000+", "Largest independent BD network.", "$15–30M"],
+            ["LPL Financial", "~23,000+", "Already investing in advisor tech.", "$20–40M"],
+            ["Cetera", "~12,000+", "Active in AI tools.", "$15–30M"],
           ]} />
         </ExitAccordion>
-        <ExitAccordion id="t4" title="Tier 4 \u2014 PE Roll-Up Plays" subtitle="Financial buyers building advisor tech portfolios." badge="FINANCIAL">
+        <ExitAccordion id="t4" title="Tier 4 — PE Roll-Up Plays" subtitle="Financial buyers building advisor tech portfolios." badge="FINANCIAL">
           <ExitTable headers={["Firm", "Thesis", "How Advisor OS Fits", "Structure"]} rows={[
-            ["Vista Equity", "Enterprise software roll-ups", "Bolt-on to advisor tech portfolio co", "60\u201380% cash, 20\u201340% rollover"],
+            ["Vista Equity", "Enterprise software roll-ups", "Bolt-on to advisor tech portfolio co", "60–80% cash, 20–40% rollover"],
             ["Thoma Bravo", "Software consolidation", "Vertical finserv SaaS matches thesis", "Majority acquisition"],
             ["FINTOP Capital", "Advisor tech consolidation", "Direct thesis match", "Growth equity or full acq"],
             ["Genstar Capital", "Backed Orion", "Tuck-in to Orion platform", "Bolt-on, integrated post-close"],
@@ -980,15 +980,15 @@ function TabExit() {
         <div style={{ position:"absolute", inset:0, background:walnutGrainOverlay, opacity:0.3, pointerEvents:"none" as const }} />
         <div style={caption({ color:C.woodLight, marginBottom:14 })}>ONE-LINE PITCH</div>
         <div style={{ fontFamily:FD, fontSize:20, color:C.warmWhite, lineHeight:1.5, fontStyle:"italic", maxWidth:760, position:"relative" }}>
-          &ldquo;We&rsquo;ve figured out how to use AI to deliver $60\u2013120K/year of agency services for $17K/year, specifically for financial advisors, with built-in compliance awareness and a distribution channel into 1,000+ advisors through MassMutual-affiliated firms.&rdquo;
+          &ldquo;We&rsquo;ve figured out how to use AI to deliver $60–120K/year of agency services for $17K/year, specifically for financial advisors, with built-in compliance awareness and a distribution channel into 1,000+ advisors through MassMutual-affiliated firms.&rdquo;
         </div>
       </div>
 
       <div style={seamGrid("1fr 1fr 1fr")}>
         {[
-          { label:"VALUE FOR ADVISOR", color:C.green, items:["85% cost reduction vs. agency ($17K vs. $60\u2013120K)","Differentiated brand \u2014 not template content","Always-on content engine","Positioned as serious firm, not hobbyist"] },
-          { label:"VALUE FOR PLATFORM / BD", color:C.woodMid, items:["Advisor retention lever \u2014 growth = loyalty","Recruiting differentiator vs. competing BDs","Revenue share / licensing opportunity","Data on what marketing works (strategic asset)"] },
-          { label:"VALUE FOR ACQUIRER", color:C.orange, items:["AI tech: 18\u201336 months to replicate","Pre-built MassMutual distribution","Vertical expertise + compliance = moat","80%+ gross margins on SaaS + AI delivery"] },
+          { label:"VALUE FOR ADVISOR", color:C.green, items:["85% cost reduction vs. agency ($17K vs. $60–120K)","Differentiated brand — not template content","Always-on content engine","Positioned as serious firm, not hobbyist"] },
+          { label:"VALUE FOR PLATFORM / BD", color:C.woodMid, items:["Advisor retention lever — growth = loyalty","Recruiting differentiator vs. competing BDs","Revenue share / licensing opportunity","Data on what marketing works (strategic asset)"] },
+          { label:"VALUE FOR ACQUIRER", color:C.orange, items:["AI tech: 18–36 months to replicate","Pre-built MassMutual distribution","Vertical expertise + compliance = moat","80%+ gross margins on SaaS + AI delivery"] },
         ].map((col,i) => (
           <div key={i} style={{ ...panelBg, borderTop:`3px solid ${col.color}` }}>
             <div style={caption({ color:col.color, marginBottom:14 })}>{col.label}</div>
@@ -1002,11 +1002,11 @@ function TabExit() {
       <SH num="07" title="18-Month Priority Stack" />
       <div style={{ ...seamGrid("1fr"), marginBottom:0 }}>
         {[
-          { n:"01", t:"Get to $1M ARR as fast as possible", d:"Credibility threshold. Below $1M, buyers see a lifestyle business. Above = revenue multiples. Target: Month 8\u201310.", led:"green" },
-          { n:"02", t:"Prove retention \u2014 make churn the #1 metric", d:"Monthly logo churn under 5% is baseline. Under 3% is premium.", led:"green" },
-          { n:"03", t:"Document the distribution flywheel", d:"Jeremy\u2019s network \u2192 Coastal \u2192 case studies \u2192 MassMutual expansion \u2192 other BDs.", led:"orange" },
+          { n:"01", t:"Get to $1M ARR as fast as possible", d:"Credibility threshold. Below $1M, buyers see a lifestyle business. Above = revenue multiples. Target: Month 8–10.", led:"green" },
+          { n:"02", t:"Prove retention — make churn the #1 metric", d:"Monthly logo churn under 5% is baseline. Under 3% is premium.", led:"green" },
+          { n:"03", t:"Document the distribution flywheel", d:"Jeremy’s network → Coastal → case studies → MassMutual expansion → other BDs.", led:"orange" },
           { n:"04", t:"Land one enterprise deal outside Coastal", d:"The single most important proof point. One BD/RIA with 200+ advisors signing an enterprise agreement.", led:"orange" },
-          { n:"05", t:"Keep team at 3\u20135 people", d:"AI-native cos doing $1M+ rev/employee. A 3\u20135 person team at $3M ARR is wildly attractive to acquirers.", led:"green" },
+          { n:"05", t:"Keep team at 3–5 people", d:"AI-native cos doing $1M+ rev/employee. A 3–5 person team at $3M ARR is wildly attractive to acquirers.", led:"green" },
           { n:"06", t:"Build 3 case studies with AUM growth data", d:"Advisors who used Advisor OS and grew their book X% in Y months. Track from Day 1.", led:"gray" },
           { n:"07", t:"Establish compliance workflow early", d:"FINRA/SEC awareness built into platform (not bolted on). Table stakes for enterprise sales.", led:"gray" },
         ].map((item,i) => (
@@ -1029,10 +1029,10 @@ function TabExit() {
         <div style={caption({ color:C.woodLight, marginBottom:14 })}>BOTTOM LINE</div>
         <div style={{ fontFamily:FD, fontSize:28, color:C.warmWhite, marginBottom:16, lineHeight:1.2 }}>The Realistic Path to a Meaningful Exit</div>
         <div style={{ fontSize:15, color:"rgba(255,255,255,0.75)", lineHeight:1.7, fontFamily:FB, maxWidth:720 }}>
-          The sweet spot for an 18-month exit is the <strong style={{ color:C.warmWhite }}>$15\u201330M range</strong> \u2014 the Medium scenario. That requires roughly <strong style={{ color:C.warmWhite }}>$3\u20135M ARR</strong>, sub-5% monthly churn, and a clear distribution story beyond Coastal Wealth.
+          The sweet spot for an 18-month exit is the <strong style={{ color:C.warmWhite }}>$15–30M range</strong> — the Medium scenario. That requires roughly <strong style={{ color:C.warmWhite }}>$3–5M ARR</strong>, sub-5% monthly churn, and a clear distribution story beyond Coastal Wealth.
         </div>
         <div style={{ fontSize:15, color:"rgba(255,255,255,0.75)", lineHeight:1.7, fontFamily:FB, maxWidth:720, marginTop:12 }}>
-          Either way, the first six months prove one thing: <strong style={{ color:C.warmWhite }}>advisors who use Advisor OS grow faster than advisors who don&rsquo;t.</strong> That proof point \u2014 documented with real AUM data \u2014 separates a $5M exit from a $50M exit.
+          Either way, the first six months prove one thing: <strong style={{ color:C.warmWhite }}>advisors who use Advisor OS grow faster than advisors who don&rsquo;t.</strong> That proof point — documented with real AUM data — separates a $5M exit from a $50M exit.
         </div>
       </div>
     </div>
@@ -1048,62 +1048,62 @@ function TabDistribution() {
   const [activeModel, setActiveModel] = useState(2);
 
   const channels = [
-    { id:"incubate", title:"Incubate at Coastal Wealth", phase:"Phase 1", timeline:"Months 1\u20133", color:C.green, led:"green", pulse:true,
-      strategy:"Prove the product works with 5\u201310 hand-picked advisors inside Coastal Wealth. Select advisors who are active on LinkedIn, hungry for growth, and willing to be early adopters. Keir runs every onboarding personally.",
-      mechanics:["Hand-pick 5\u201310 advisors across niches","Founding member pricing or first-month free for testimonial commitment","Keir runs all kickoff calls and reviews all AI output","Track posting frequency, LinkedIn impressions, inbound leads, AUM movement","Document before/after: brand quality, content consistency, digital presence","Build 3 case studies with quantifiable results within 90 days"],
-      unlocks:"Proven output quality. Real testimonials. Case studies with data.", risk:"Low \u2014 fully within our control." },
-    { id:"coastal-expand", title:"Expand Across Coastal Wealth", phase:"Phase 1\u20132", timeline:"Months 3\u20136", color:C.green, led:"green", pulse:false,
-      strategy:"Once 5\u201310 advisors are producing results, open AdvisorOS to all 200 Coastal advisors. Jeremy champions it internally. Position as a firm-level benefit.",
-      mechanics:["Jeremy presents results at advisor meetings","Co-branded rollout: 'Coastal Wealth x AdvisorOS'","Firm-rate pricing for Coastal advisors ($697/mo vs. $997 retail)","Royalty to Coastal: 10\u201315% of subscription revenue per advisor","Self-serve onboarding flow","Monthly reporting to Jeremy"],
-      unlocks:"50\u2013100 advisors. $50K+ MRR. Coastal earning royalty revenue.", risk:"Medium \u2014 depends on Jeremy championing it." },
-    { id:"massmutual-firms", title:"MassMutual-Affiliated Firms", phase:"Phase 2", timeline:"Months 6\u201312", color:C.woodMid, led:"orange", pulse:false,
+    { id:"incubate", title:"Incubate at Coastal Wealth", phase:"Phase 1", timeline:"Months 1–3", color:C.green, led:"green", pulse:true,
+      strategy:"Prove the product works with 5–10 hand-picked advisors inside Coastal Wealth. Select advisors who are active on LinkedIn, hungry for growth, and willing to be early adopters. Keir runs every onboarding personally.",
+      mechanics:["Hand-pick 5–10 advisors across niches","Founding member pricing or first-month free for testimonial commitment","Keir runs all kickoff calls and reviews all AI output","Track posting frequency, LinkedIn impressions, inbound leads, AUM movement","Document before/after: brand quality, content consistency, digital presence","Build 3 case studies with quantifiable results within 90 days"],
+      unlocks:"Proven output quality. Real testimonials. Case studies with data.", risk:"Low — fully within our control." },
+    { id:"coastal-expand", title:"Expand Across Coastal Wealth", phase:"Phase 1–2", timeline:"Months 3–6", color:C.green, led:"green", pulse:false,
+      strategy:"Once 5–10 advisors are producing results, open AdvisorOS to all 200 Coastal advisors. Jeremy champions it internally. Position as a firm-level benefit.",
+      mechanics:["Jeremy presents results at advisor meetings","Co-branded rollout: 'Coastal Wealth x AdvisorOS'","Firm-rate pricing for Coastal advisors ($697/mo vs. $997 retail)","Royalty to Coastal: 10–15% of subscription revenue per advisor","Self-serve onboarding flow","Monthly reporting to Jeremy"],
+      unlocks:"50–100 advisors. $50K+ MRR. Coastal earning royalty revenue.", risk:"Medium — depends on Jeremy championing it." },
+    { id:"massmutual-firms", title:"MassMutual-Affiliated Firms", phase:"Phase 2", timeline:"Months 6–12", color:C.woodMid, led:"orange", pulse:false,
       strategy:"MassMutual has ~50 affiliated firms with 6,500+ advisors total. Use the Coastal case study to pitch firm leadership at sister agencies.",
-      mechanics:["Identify top 10 MassMutual firms by advisor count","Jeremy makes warm introductions to firm leaders","Present Coastal results","Per-firm royalty agreement: firm earns 10\u201315%","Each firm gets a dedicated onboarding cohort","Replicate the Coastal playbook"],
-      unlocks:"Multi-firm distribution. 200\u2013500 advisors. $150K\u2013400K MRR.", risk:"Medium \u2014 requires strong Coastal results." },
-    { id:"massmutual-corporate", title:"MassMutual Corporate Blessing", phase:"Phase 2\u20133", timeline:"Months 9\u201315", color:C.orange, led:"orange", pulse:false,
+      mechanics:["Identify top 10 MassMutual firms by advisor count","Jeremy makes warm introductions to firm leaders","Present Coastal results","Per-firm royalty agreement: firm earns 10–15%","Each firm gets a dedicated onboarding cohort","Replicate the Coastal playbook"],
+      unlocks:"Multi-firm distribution. 200–500 advisors. $150K–400K MRR.", risk:"Medium — requires strong Coastal results." },
+    { id:"massmutual-corporate", title:"MassMutual Corporate Blessing", phase:"Phase 2–3", timeline:"Months 9–15", color:C.orange, led:"orange", pulse:false,
       strategy:"The ultimate MassMutual unlock: corporate endorses or licenses AdvisorOS for their entire network.",
-      mechanics:["Build relationships with MassMutual corporate marketing","Present aggregated data from Coastal + 2\u20133 affiliated firms","Propose corporate royalty","Offer MassMutual co-branding with compliance pre-approval","Build compliance integration","Position as recruiting differentiator"],
-      unlocks:"6,500 advisor TAM via one relationship. Corporate-level revenue.", risk:"High \u2014 corporate cycles are 6\u201312 months." },
-    { id:"major-networks", title:"Expand to Major Networks", phase:"Phase 3", timeline:"Months 12\u201318", color:C.orange, led:"gray", pulse:false,
+      mechanics:["Build relationships with MassMutual corporate marketing","Present aggregated data from Coastal + 2–3 affiliated firms","Propose corporate royalty","Offer MassMutual co-branding with compliance pre-approval","Build compliance integration","Position as recruiting differentiator"],
+      unlocks:"6,500 advisor TAM via one relationship. Corporate-level revenue.", risk:"High — corporate cycles are 6–12 months." },
+    { id:"major-networks", title:"Expand to Major Networks", phase:"Phase 3", timeline:"Months 12–18", color:C.orange, led:"gray", pulse:false,
       strategy:"Once MassMutual is proven, pitch other major networks. TAM expands from 6,500 to 50,000+ advisors.",
       mechanics:["Northwestern Mutual (~6,000 advisors)","New York Life (~12,000 advisors)","Guardian Life (~3,000 advisors)","Pacific Life, Equitable, Ameritas","Same royalty model per network","Each network proves the model works industry-wide"],
-      unlocks:"50,000+ advisor TAM. Industry-standard platform.", risk:"Medium \u2014 requires MassMutual success story." },
-    { id:"direct-advisor", title:"Direct to Independent Advisors", phase:"Phase 2\u20133", timeline:"Months 6\u201318", color:C.midGray, led:"gray", pulse:false,
-      strategy:"Parallel direct channel for independent RIAs and solo agents. Full retail pricing, no revenue share \u2014 highest margin channel.",
+      unlocks:"50,000+ advisor TAM. Industry-standard platform.", risk:"Medium — requires MassMutual success story." },
+    { id:"direct-advisor", title:"Direct to Independent Advisors", phase:"Phase 2–3", timeline:"Months 6–18", color:C.midGray, led:"gray", pulse:false,
+      strategy:"Parallel direct channel for independent RIAs and solo agents. Full retail pricing, no revenue share — highest margin channel.",
       mechanics:["LinkedIn content: Keir posts about AI + marketing for advisors","Targeted outreach to independent RIAs","Partnerships with advisor communities: XYPN, NAPFA","Referral program: existing advisors earn a month free per referral","Webinar series","SEO play (Phase 2)"],
-      unlocks:"Diversified revenue. Highest margins. Brand awareness.", risk:"Low \u2014 standard SaaS go-to-market." },
+      unlocks:"Diversified revenue. Highest margins. Brand awareness.", risk:"Low — standard SaaS go-to-market." },
   ];
 
   const paths = [
-    { id:"a", title:"Path A \u2014 Advisor First", subtitle:"Bottom-Up Organic", color:C.green, recommended:false,
+    { id:"a", title:"Path A — Advisor First", subtitle:"Bottom-Up Organic", color:C.green, recommended:false,
       desc:"Start with individual advisors at Coastal. Prove results through word of mouth. Let adoption pull you into the firm.",
-      pros:["Lowest risk \u2014 one advisor at a time","Organic proof that is undeniable","No executive buy-in needed to start","Each advisor is a walking case study"],
+      pros:["Lowest risk — one advisor at a time","Organic proof that is undeniable","No executive buy-in needed to start","Each advisor is a walking case study"],
       cons:["Slowest path to scale","Revenue stays small for 6+ months","Dependent on advisor word-of-mouth","Jeremy may not engage deeply without firm-level upside"],
-      timeline:"5 advisors \u2192 20 \u2192 50 \u2192 firm adoption (12\u201318 months to 100+)", jeremy:"Passive \u2014 provides access, observes results" },
-    { id:"b", title:"Path B \u2014 Corporate First", subtitle:"Top-Down Enterprise", color:C.orange, recommended:false,
+      timeline:"5 advisors → 20 → 50 → firm adoption (12–18 months to 100+)", jeremy:"Passive — provides access, observes results" },
+    { id:"b", title:"Path B — Corporate First", subtitle:"Top-Down Enterprise", color:C.orange, recommended:false,
       desc:"Go directly to Jeremy for a firm-level deal. Coastal buys AdvisorOS for all 200 advisors as a firm benefit.",
       pros:["Fastest revenue acceleration","Jeremy financially incentivized via royalty","Firm-level deal creates instant case study","Positions for MassMutual corporate faster"],
-      cons:["Higher risk \u2014 one 'no' from Jeremy slows everything","Requires Jeremy to commit budget","Firm-level deals have longer decision cycles","If Coastal says no, back to Path A"],
-      timeline:"Firm deal Month 2 \u2192 100 advisors Month 4 \u2192 MassMutual pitch Month 6", jeremy:"Active \u2014 executive sponsor, earns royalty" },
-    { id:"c", title:"Path C \u2014 Hybrid", subtitle:"Bottom-Up Proof, Top-Down Scale", color:C.woodMid, recommended:true,
-      desc:"Start bottom-up with 5 advisors (Path A) while getting Jeremy\u2019s blessing to position as a firm initiative once results prove out. Best of both.",
-      pros:["Organic proof removes Jeremy\u2019s risk","Royalty incentivizes Jeremy from the start","Case studies from both advisor AND firm level","Fastest credible path to MassMutual expansion","Jeremy chooses his level of involvement"],
-      cons:["Slightly slower than pure Path B in months 1\u20133","Requires managing two motions simultaneously"],
-      timeline:"5 advisors Month 1 \u2192 results Month 3 \u2192 firm rollout Month 4 \u2192 100+ Month 6 \u2192 MassMutual pitch Month 8", jeremy:"Progressive \u2014 starts as access provider, becomes champion, earns royalty throughout" },
+      cons:["Higher risk — one 'no' from Jeremy slows everything","Requires Jeremy to commit budget","Firm-level deals have longer decision cycles","If Coastal says no, back to Path A"],
+      timeline:"Firm deal Month 2 → 100 advisors Month 4 → MassMutual pitch Month 6", jeremy:"Active — executive sponsor, earns royalty" },
+    { id:"c", title:"Path C — Hybrid", subtitle:"Bottom-Up Proof, Top-Down Scale", color:C.woodMid, recommended:true,
+      desc:"Start bottom-up with 5 advisors (Path A) while getting Jeremy’s blessing to position as a firm initiative once results prove out. Best of both.",
+      pros:["Organic proof removes Jeremy’s risk","Royalty incentivizes Jeremy from the start","Case studies from both advisor AND firm level","Fastest credible path to MassMutual expansion","Jeremy chooses his level of involvement"],
+      cons:["Slightly slower than pure Path B in months 1–3","Requires managing two motions simultaneously"],
+      timeline:"5 advisors Month 1 → results Month 3 → firm rollout Month 4 → 100+ Month 6 → MassMutual pitch Month 8", jeremy:"Progressive — starts as access provider, becomes champion, earns royalty throughout" },
   ];
 
   const revenueModels = [
-    { title:"Model 1: Revenue Share", subtitle:"Simplest \u2014 firm earns % of every subscription", color:C.green,
-      split:"Firm gets 10\u201315% of monthly subscription", example:"At $997/mo, firm earns $100\u2013150/advisor/month",
-      at100:"$10\u201315K/month passive revenue (100 advisors)", at500:"$50\u201375K/month passive revenue (500 across network)",
+    { title:"Model 1: Revenue Share", subtitle:"Simplest — firm earns % of every subscription", color:C.green,
+      split:"Firm gets 10–15% of monthly subscription", example:"At $997/mo, firm earns $100–150/advisor/month",
+      at100:"$10–15K/month passive revenue (100 advisors)", at500:"$50–75K/month passive revenue (500 across network)",
       firmCost:"Zero. Firm invests nothing. Pure upside.", bestFor:"Jeremy conversation. Zero risk for Coastal. Easy yes." },
-    { title:"Model 2: Firm-Subsidized", subtitle:"Firm buys in bulk \u2014 recruiting differentiator", color:C.woodMid,
-      split:"Firm pays flat $30\u201350K/month for up to 200 advisors ($150\u2013250/advisor)", example:"Firm absorbs cost or passes through. Advisors get 'free' agency.",
-      at100:"$30\u201350K/month guaranteed (regardless of adoption)", at500:"$150\u2013250K/month across multiple firm deals",
-      firmCost:"$30\u201350K/month. Firm treats as recruiting budget.", bestFor:"Firms with recruiting budgets." },
-    { title:"Model 3: Hybrid Royalty", subtitle:"Recommended \u2014 bounty + royalty, zero firm cost", color:C.woodMid,
-      split:"Advisors pay own subscription ($997 retail or $697 firm rate). Firm gets $500 bounty per signup + 10% ongoing royalty ($70\u2013100/mo).", example:"Firm earns $500 upfront + $70\u2013100/month per advisor.",
-      at100:"$50K bounties + $7\u201310K/month ongoing (100 advisors)", at500:"$250K bounties + $35\u201350K/month ongoing (500 across network)",
+    { title:"Model 2: Firm-Subsidized", subtitle:"Firm buys in bulk — recruiting differentiator", color:C.woodMid,
+      split:"Firm pays flat $30–50K/month for up to 200 advisors ($150–250/advisor)", example:"Firm absorbs cost or passes through. Advisors get 'free' agency.",
+      at100:"$30–50K/month guaranteed (regardless of adoption)", at500:"$150–250K/month across multiple firm deals",
+      firmCost:"$30–50K/month. Firm treats as recruiting budget.", bestFor:"Firms with recruiting budgets." },
+    { title:"Model 3: Hybrid Royalty", subtitle:"Recommended — bounty + royalty, zero firm cost", color:C.woodMid,
+      split:"Advisors pay own subscription ($997 retail or $697 firm rate). Firm gets $500 bounty per signup + 10% ongoing royalty ($70–100/mo).", example:"Firm earns $500 upfront + $70–100/month per advisor.",
+      at100:"$50K bounties + $7–10K/month ongoing (100 advisors)", at500:"$250K bounties + $35–50K/month ongoing (500 across network)",
       firmCost:"Zero. Firm invests nothing. Earns from day one.", bestFor:"Default for Jeremy. Zero risk, immediate revenue, perfect alignment." },
   ];
 
@@ -1114,7 +1114,7 @@ function TabDistribution() {
   return (
     <div>
       <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:1, background:C.lightGray, border:`1px solid ${C.lightGray}`, borderRadius:2, overflow:"hidden", marginBottom:28 }}>
-        <MetricCard label="Coastal Wealth" value="200" sub="Advisors \u2014 our proving ground" stripColor={C.green} />
+        <MetricCard label="Coastal Wealth" value="200" sub="Advisors — our proving ground" stripColor={C.green} />
         <MetricCard label="MassMutual Network" value="6,500" sub="Across ~50 affiliated firms" stripColor={C.woodMid} />
         <MetricCard label="Major Networks TAM" value="50K+" sub="NWM, NYL, Guardian, Pacific, Equitable" stripColor={C.orange} />
         <MetricCard label="Agency Replacement" value="85%" sub="Cost savings ($17K vs $120K)" stripColor={C.green} />
@@ -1128,7 +1128,7 @@ function TabDistribution() {
       </div>
 
       <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:1, background:C.lightGray, border:`1px solid ${C.lightGray}`, borderRadius:2, overflow:"hidden", marginBottom:28 }}>
-        {[{name:"MassMutual",advisors:"~6,500",firms:"~50 affiliated firms",status:"Beachhead network",color:C.green,led:"green"},{name:"Northwestern Mutual",advisors:"~6,000",firms:"District offices nationwide",status:"Target \u2014 Year 1\u20132",color:C.woodMid,led:"orange"},{name:"New York Life",advisors:"~12,000",firms:"General offices nationwide",status:"Target \u2014 Year 1\u20132",color:C.woodMid,led:"orange"},{name:"Guardian Life",advisors:"~3,000",firms:"Agency network",status:"Target \u2014 Year 2",color:C.midGray,led:"gray"},{name:"Pacific / Equitable",advisors:"~3,000",firms:"BD and advisor networks",status:"Target \u2014 Year 2",color:C.midGray,led:"gray"},{name:"Independent RIAs",advisors:"~40,000+",firms:"Solo and small firms",status:"Direct \u2014 ongoing",color:C.midGray,led:"gray"}].map((n,i) => (
+        {[{name:"MassMutual",advisors:"~6,500",firms:"~50 affiliated firms",status:"Beachhead network",color:C.green,led:"green"},{name:"Northwestern Mutual",advisors:"~6,000",firms:"District offices nationwide",status:"Target — Year 1–2",color:C.woodMid,led:"orange"},{name:"New York Life",advisors:"~12,000",firms:"General offices nationwide",status:"Target — Year 1–2",color:C.woodMid,led:"orange"},{name:"Guardian Life",advisors:"~3,000",firms:"Agency network",status:"Target — Year 2",color:C.midGray,led:"gray"},{name:"Pacific / Equitable",advisors:"~3,000",firms:"BD and advisor networks",status:"Target — Year 2",color:C.midGray,led:"gray"},{name:"Independent RIAs",advisors:"~40,000+",firms:"Solo and small firms",status:"Direct — ongoing",color:C.midGray,led:"gray"}].map((n,i) => (
           <div key={i} style={{ ...panelBg, padding:"14px 18px", position:"relative" }}>
             <div style={{ position:"absolute", top:0, left:0, width:4, height:"100%", background:n.color }} />
             <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:6 }}><LED color={n.led} size={7} /><span style={{ fontFamily:FD, fontSize:15, color:C.nearBlack }}>{n.name}</span></div>
@@ -1140,7 +1140,7 @@ function TabDistribution() {
 
       <WalnutDivider />
 
-      <SH num="02" title="Go-to-Market Paths" sub="Three strategic options \u2014 Path C recommended" />
+      <SH num="02" title="Go-to-Market Paths" sub="Three strategic options — Path C recommended" />
       <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:1, background:C.lightGray, border:`1px solid ${C.lightGray}`, borderRadius:2, overflow:"hidden", marginBottom:24 }}>
         {paths.map((p,i) => (
           <div key={i} onClick={()=>setActivePath(i)} style={{ ...panelBg, padding:20, cursor:"pointer", borderTop:i===activePath?`4px solid ${p.color}`:`4px solid transparent`, background:i===activePath?C.cream:C.warmWhite, transition:"all 0.2s", position:"relative" }}>
@@ -1206,7 +1206,7 @@ function TabDistribution() {
       </div>
       <div style={{ border:`1px solid ${C.lightGray}`, borderRadius:3, overflow:"hidden", marginBottom:28 }}>
         <div style={{ padding:"20px 28px", background:C.warmWhite, borderBottom:`1px solid ${C.offWhite}`, borderLeft:`5px solid ${active.color}` }}>
-          <div style={caption({ color:active.color, marginBottom:4 })}>{active.phase} \u2014 {active.timeline}</div>
+          <div style={caption({ color:active.color, marginBottom:4 })}>{active.phase} — {active.timeline}</div>
           <div style={{ fontFamily:FD, fontSize:22, color:C.nearBlack }}>{active.title}</div>
         </div>
         <div style={{ padding:"16px 28px", background:C.cream, borderBottom:`1px solid ${C.offWhite}` }}><p style={{ fontSize:13, lineHeight:1.8, color:C.warmGray, margin:0 }}>{active.strategy}</p></div>
@@ -1226,11 +1226,11 @@ function TabDistribution() {
       <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:1, background:C.lightGray, border:`1px solid ${C.lightGray}`, borderRadius:2, overflow:"hidden", marginBottom:24 }}>
         <div style={{ ...panelBg, borderLeft:`4px solid ${C.green}` }}>
           <div style={caption({ color:C.green, marginBottom:12 })}>PRODUCT STICKINESS</div>
-          {["Brand Profile: 24-question intake + kickoff creates deeply personalized identity","Content archive grows monthly \u2014 6+ months of history and compliance records","Edit with AI learns preferences \u2014 revision patterns create invisible personalization","Compliance audit trail \u2014 exportable records that compliance officers depend on","Team familiarity \u2014 assistants, compliance, partners all learn the portal"].map((t,i) => <StatusItem key={i} text={t} color="green" />)}
+          {["Brand Profile: 24-question intake + kickoff creates deeply personalized identity","Content archive grows monthly — 6+ months of history and compliance records","Edit with AI learns preferences — revision patterns create invisible personalization","Compliance audit trail — exportable records that compliance officers depend on","Team familiarity — assistants, compliance, partners all learn the portal"].map((t,i) => <StatusItem key={i} text={t} color="green" />)}
         </div>
         <div style={{ ...panelBg, borderLeft:`4px solid ${C.woodMid}` }}>
           <div style={caption({ color:C.woodMid, marginBottom:12 })}>SWITCHING COST BY MONTH</div>
-          {["Month 1: Low \u2014 just started, easy to walk away","Month 3: Medium \u2014 posted content, building recognition","Month 6: High \u2014 identity established, compliance accumulated","Month 12: Very high \u2014 full year of archive, brand equity","Month 18+: Embedded \u2014 like ripping out FMG"].map((t,i) => <StatusItem key={i} text={t} color="orange" />)}
+          {["Month 1: Low — just started, easy to walk away","Month 3: Medium — posted content, building recognition","Month 6: High — identity established, compliance accumulated","Month 12: Very high — full year of archive, brand equity","Month 18+: Embedded — like ripping out FMG"].map((t,i) => <StatusItem key={i} text={t} color="orange" />)}
         </div>
       </div>
 
@@ -1238,7 +1238,7 @@ function TabDistribution() {
 
       <SH num="07" title="Scaling Timeline" sub="5 advisors to 1,000+ in 18 months" />
       <div style={{ ...seamGrid("1fr"), marginBottom:0 }}>
-        {[{month:"Months 1\u20133",advisors:"5\u201310",channel:"Coastal Wealth (hand-picked)",milestone:"Prove quality. 3 case studies.",color:C.green,led:"green"},{month:"Months 3\u20136",advisors:"30\u201375",channel:"Coastal firm-wide + royalty active",milestone:"Jeremy champions. Self-serve onboarding.",color:C.green,led:"green"},{month:"Months 6\u20139",advisors:"75\u2013200",channel:"Coastal + 1\u20132 MassMutual sister firms",milestone:"First non-Coastal firm.",color:C.woodMid,led:"orange"},{month:"Months 9\u201312",advisors:"200\u2013500",channel:"3\u20135 MassMutual firms + direct",milestone:"MassMutual corporate conversations.",color:C.woodMid,led:"orange"},{month:"Months 12\u201315",advisors:"500\u2013750",channel:"MassMutual + NWM/NYL pitches begin",milestone:"Corporate blessing. Major network pitches.",color:C.orange,led:"gray"},{month:"Months 15\u201318",advisors:"750\u20131,000+",channel:"Multi-network + corporate agreements",milestone:"Strategic acquirers engaged. Exit window.",color:C.orange,led:"gray"}].map((row,i) => (
+        {[{month:"Months 1–3",advisors:"5–10",channel:"Coastal Wealth (hand-picked)",milestone:"Prove quality. 3 case studies.",color:C.green,led:"green"},{month:"Months 3–6",advisors:"30–75",channel:"Coastal firm-wide + royalty active",milestone:"Jeremy champions. Self-serve onboarding.",color:C.green,led:"green"},{month:"Months 6–9",advisors:"75–200",channel:"Coastal + 1–2 MassMutual sister firms",milestone:"First non-Coastal firm.",color:C.woodMid,led:"orange"},{month:"Months 9–12",advisors:"200–500",channel:"3–5 MassMutual firms + direct",milestone:"MassMutual corporate conversations.",color:C.woodMid,led:"orange"},{month:"Months 12–15",advisors:"500–750",channel:"MassMutual + NWM/NYL pitches begin",milestone:"Corporate blessing. Major network pitches.",color:C.orange,led:"gray"},{month:"Months 15–18",advisors:"750–1,000+",channel:"Multi-network + corporate agreements",milestone:"Strategic acquirers engaged. Exit window.",color:C.orange,led:"gray"}].map((row,i) => (
           <div key={i} style={{ ...panelBg, padding:"14px 28px 14px 36px", display:"flex", alignItems:"center", gap:20, position:"relative", overflow:"hidden" }}>
             <div style={{ position:"absolute", top:0, left:0, width:4, height:"100%", background:row.color }} />
             <LED color={row.led} size={8} />
@@ -1274,7 +1274,7 @@ function TabCompetitor() {
         <MetricCard label="AdvisorOS Edge" value="AI-Native" sub="Created, not curated" stripColor={C.green} />
       </div>
 
-      <SH num="01" title="Know the Enemy" sub="What Hearsay actually is \u2014 and is not" />
+      <SH num="01" title="Know the Enemy" sub="What Hearsay actually is — and is not" />
       <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:1, background:C.lightGray, border:`1px solid ${C.lightGray}`, borderRadius:2, overflow:"hidden", marginBottom:24 }}>
         <div style={{ ...panelBg, borderLeft:`4px solid ${C.midGray}` }}>
           <div style={caption({ marginBottom:12 })}>What Hearsay Does</div>
@@ -1282,7 +1282,7 @@ function TabCompetitor() {
         </div>
         <div style={{ ...panelBg, borderLeft:`4px solid ${C.red}` }}>
           <div style={caption({ color:C.red, marginBottom:12 })}>What Hearsay Does NOT Do</div>
-          {["Does not create original content \u2014 curates third-party articles","Does not build unique brand identities for advisors","Does not generate personalized voice or messaging","Does not differentiate one advisor from another","Does not use LLMs for content generation","Does not provide brand strategy or visual identity","Does not replace a marketing agency"].map((t,i) => <StatusItem key={i} text={t} color="orange" />)}
+          {["Does not create original content — curates third-party articles","Does not build unique brand identities for advisors","Does not generate personalized voice or messaging","Does not differentiate one advisor from another","Does not use LLMs for content generation","Does not provide brand strategy or visual identity","Does not replace a marketing agency"].map((t,i) => <StatusItem key={i} text={t} color="orange" />)}
         </div>
       </div>
 
@@ -1290,18 +1290,18 @@ function TabCompetitor() {
         <div style={{ position:"absolute", inset:0, ...perfBg, opacity:0.12, pointerEvents:"none" as const }} />
         <div style={caption({ color:C.woodLight, marginBottom:14 })}>THE FUNDAMENTAL DIFFERENCE</div>
         <div style={{ fontSize:15, color:"rgba(255,255,255,0.85)", lineHeight:1.8, fontFamily:FB, maxWidth:820 }}>
-          Hearsay is a <strong style={{ color:C.warmWhite }}>distribution and supervision platform</strong>. Advisors get a library of pre-made content from Forbes, The Economist, and firm marketing \u2014 then Hearsay routes it through compliance and publishes it. The content is generic. <strong style={{ color:C.warmWhite }}>AdvisorOS is a brand creation and content generation platform.</strong> Every piece of content is original, written in the advisor&rsquo;s unique voice, built on their specific positioning.
+          Hearsay is a <strong style={{ color:C.warmWhite }}>distribution and supervision platform</strong>. Advisors get a library of pre-made content from Forbes, The Economist, and firm marketing — then Hearsay routes it through compliance and publishes it. The content is generic. <strong style={{ color:C.warmWhite }}>AdvisorOS is a brand creation and content generation platform.</strong> Every piece of content is original, written in the advisor&rsquo;s unique voice, built on their specific positioning.
         </div>
       </div>
 
       <WalnutDivider />
 
-      <SH num="02" title="SWOT Analysis" sub="Hearsay\u2019s position after the Yext acquisition" />
+      <SH num="02" title="SWOT Analysis" sub="Hearsay’s position after the Yext acquisition" />
       <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr 1fr", gap:1, background:C.lightGray, border:`1px solid ${C.lightGray}`, borderRadius:2, overflow:"hidden", marginBottom:24 }}>
         {[
           { title:"Strengths", color:C.green, items:["260K+ advisor installed base","15+ years of enterprise compliance trust","FINRA/SEC/FCA regulatory credibility","Deep integrations with major broker-dealers","Proven supervision and archival workflows"] },
-          { title:"Weaknesses", color:C.red, items:["Content is borrowed, not created","No brand differentiation between advisors","Legacy architecture \u2014 2018-era NLP","Yext acquisition adding integration complexity","3.3/5 PMF score, only 31% quota attainment","Users report lack of customization"] },
-          { title:"Opportunities", color:C.woodMid, items:["Could add AI content generation","Could acquire a brand-building tool","Yext\u2019s digital presence platform synergies","Expansion into international markets"] },
+          { title:"Weaknesses", color:C.red, items:["Content is borrowed, not created","No brand differentiation between advisors","Legacy architecture — 2018-era NLP","Yext acquisition adding integration complexity","3.3/5 PMF score, only 31% quota attainment","Users report lack of customization"] },
+          { title:"Opportunities", color:C.woodMid, items:["Could add AI content generation","Could acquire a brand-building tool","Yext’s digital presence platform synergies","Expansion into international markets"] },
           { title:"Threats", color:C.orange, items:["AI-native competitors (AdvisorOS)","Advisors demanding differentiated content","Social platforms favoring original over shared content","LinkedIn algorithm penalizing third-party scheduling","Yext integration distracting from core product"] },
         ].map((quad, i) => (
           <div key={i} onClick={() => setSwotActive(i)} style={{ ...panelBg, padding:16, borderTop:`4px solid ${quad.color}`, cursor:"pointer", background:i===swotActive?C.cream:C.warmWhite, transition:"all 0.2s" }}>
@@ -1331,20 +1331,20 @@ function TabCompetitor() {
           </thead>
           <tbody>
             {[
-              ["Brand Strategy & Positioning", "\u274C", "\u2705", "AdvisorOS builds unique brand identity from 150+ data points"],
-              ["Original Content Creation", "\u274C", "\u2705", "AI generates 40K+ chars of original content per advisor"],
-              ["Personalized Voice & Messaging", "\u274C", "\u2705", "Every piece sounds like the advisor, not a template"],
-              ["Visual Identity (Colors, Fonts, Logo)", "\u274C", "\u2705", "Custom palette derived from inspiration imagery"],
-              ["Content Library (Third-Party)", "\u2705", "\u274C", "Hearsay curates Forbes/Economist \u2014 but it\u2019s generic"],
-              ["Compliance Pre-Screening", "\u2705 Keyword", "\u2705 AI-Native", "AdvisorOS understands context, not just keywords"],
-              ["Pre-Approval Workflows", "\u2705", "\u2705", "Both handle review cycles"],
-              ["Social Publishing", "\u2705", "\u{1F51C} Phase 2", "Hearsay leads here today"],
-              ["Archival & Audit Trail", "\u2705", "\u2705", "Both provide regulatory-grade records"],
-              ["Supervision Dashboard", "\u2705", "\u2705", "Admin panel with client oversight"],
-              ["Voice/Text Monitoring", "\u2705", "\u274C", "Different product scope"],
-              ["Edit with AI (Real-Time Revisions)", "\u274C", "\u2705", "4-second Claude-powered content editing"],
-              ["Monthly Content Engine", "\u274C", "\u2705", "8 posts, 2 articles, email, graphics"],
-              ["Advisor Brand Differentiation", "\u274C", "\u2705", "No two advisors get the same brand or content"],
+              ["Brand Strategy & Positioning", "❌", "✅", "AdvisorOS builds unique brand identity from 150+ data points"],
+              ["Original Content Creation", "❌", "✅", "AI generates 40K+ chars of original content per advisor"],
+              ["Personalized Voice & Messaging", "❌", "✅", "Every piece sounds like the advisor, not a template"],
+              ["Visual Identity (Colors, Fonts, Logo)", "❌", "✅", "Custom palette derived from inspiration imagery"],
+              ["Content Library (Third-Party)", "✅", "❌", "Hearsay curates Forbes/Economist — but it’s generic"],
+              ["Compliance Pre-Screening", "✅ Keyword", "✅ AI-Native", "AdvisorOS understands context, not just keywords"],
+              ["Pre-Approval Workflows", "✅", "✅", "Both handle review cycles"],
+              ["Social Publishing", "✅", "\u{1F51C} Phase 2", "Hearsay leads here today"],
+              ["Archival & Audit Trail", "✅", "✅", "Both provide regulatory-grade records"],
+              ["Supervision Dashboard", "✅", "✅", "Admin panel with client oversight"],
+              ["Voice/Text Monitoring", "✅", "❌", "Different product scope"],
+              ["Edit with AI (Real-Time Revisions)", "❌", "✅", "4-second Claude-powered content editing"],
+              ["Monthly Content Engine", "❌", "✅", "8 posts, 2 articles, email, graphics"],
+              ["Advisor Brand Differentiation", "❌", "✅", "No two advisors get the same brand or content"],
             ].map((row, i) => (
               <tr key={i}>
                 <td style={{ padding:"10px 16px", color:C.charcoal, borderTop:`1px solid ${C.offWhite}`, fontWeight:500, background:i%2===0?C.warmWhite:C.cream }}>{row[0]}</td>
@@ -1367,10 +1367,10 @@ function TabCompetitor() {
             action:"Produce case studies showing AdvisorOS content vs. Hearsay content." },
           { num:"02", title:"Win on AI-Native Compliance", color:C.woodMid,
             desc:"Hearsay uses keyword-based lexicon scanning. Our AI compliance pre-screen understands context. This cuts false positives by 70%+.",
-            action:"Build the compliance pre-screen layer. Demo it against Hearsay\u2019s keyword approach." },
+            action:"Build the compliance pre-screen layer. Demo it against Hearsay’s keyword approach." },
           { num:"03", title:"Win on Total Cost", color:C.orange,
             desc:"The advisor is paying Hearsay plus an agency or freelancer. AdvisorOS replaces both for $997/month.",
-            action:"Frame the pitch as: 'You\u2019re paying $X for Hearsay + $Y for content creation. We replace both for $997/month.'" },
+            action:"Frame the pitch as: 'You’re paying $X for Hearsay + $Y for content creation. We replace both for $997/month.'" },
         ].map((s, i) => (
           <div key={i} style={{ ...panelBg, borderTop:`4px solid ${s.color}`, position:"relative", overflow:"hidden" }}>
             <div style={{ position:"absolute", top:0, right:0, width:"15%", height:"100%", ...perfBg, opacity:0.15, pointerEvents:"none" as const }} />
@@ -1386,14 +1386,14 @@ function TabCompetitor() {
 
       <WalnutDivider />
 
-      <SH num="05" title="Their Rebuild Problem" sub="Why Hearsay can\u2019t easily replicate AdvisorOS" />
+      <SH num="05" title="Their Rebuild Problem" sub="Why Hearsay can’t easily replicate AdvisorOS" />
       <div style={{ ...seamGrid("1fr"), marginBottom:24 }}>
         {[
-          { challenge:"AI-Native Content Generation", time:"12\u201318 months", why:"Hearsay\u2019s entire architecture is built around distributing existing content, not creating it.", led:"green" },
-          { challenge:"Brand Strategy Engine", time:"18\u201324 months", why:"The 24-question intake, inspiration image analysis, and 6-call AI pipeline does not exist in Hearsay\u2019s product DNA.", led:"green" },
-          { challenge:"Personalized Voice Model", time:"12\u201318 months", why:"Building a per-advisor voice engine requires a fundamentally different content architecture.", led:"green" },
-          { challenge:"Yext Integration Burden", time:"Ongoing", why:"Engineering team focused on integrating into Yext\u2019s platform. Innovation deprioritized. This is our window.", led:"orange" },
-          { challenge:"Cultural Shift", time:"2\u20133 years", why:"Hearsay\u2019s DNA is compliance and supervision. Companies rarely make this kind of pivot successfully \u2014 especially post-acquisition.", led:"orange" },
+          { challenge:"AI-Native Content Generation", time:"12–18 months", why:"Hearsay’s entire architecture is built around distributing existing content, not creating it.", led:"green" },
+          { challenge:"Brand Strategy Engine", time:"18–24 months", why:"The 24-question intake, inspiration image analysis, and 6-call AI pipeline does not exist in Hearsay’s product DNA.", led:"green" },
+          { challenge:"Personalized Voice Model", time:"12–18 months", why:"Building a per-advisor voice engine requires a fundamentally different content architecture.", led:"green" },
+          { challenge:"Yext Integration Burden", time:"Ongoing", why:"Engineering team focused on integrating into Yext’s platform. Innovation deprioritized. This is our window.", led:"orange" },
+          { challenge:"Cultural Shift", time:"2–3 years", why:"Hearsay’s DNA is compliance and supervision. Companies rarely make this kind of pivot successfully — especially post-acquisition.", led:"orange" },
         ].map((item, i) => (
           <div key={i} style={{ ...panelBg, padding:"16px 28px 16px 36px", display:"flex", alignItems:"flex-start", gap:16, position:"relative", overflow:"hidden" }}>
             <div style={{ position:"absolute", top:0, left:0, width:4, height:"100%", background:item.led==="green"?C.green:C.orange }} />
@@ -1418,7 +1418,7 @@ function TabCompetitor() {
           Hearsay helps advisors distribute someone else&rsquo;s content through compliance. AdvisorOS helps advisors build a differentiated brand and create original content that actually sounds like them.
         </div>
         <div style={{ fontSize:15, color:"rgba(255,255,255,0.75)", lineHeight:1.8, fontFamily:FB, maxWidth:760 }}>
-          260,000 advisors use Hearsay \u2014 and every single one of them still has the same problem: their content looks like everyone else&rsquo;s. AdvisorOS gives them what Hearsay never will: <strong style={{ color:C.warmWhite }}>a brand that&rsquo;s actually theirs.</strong>
+          260,000 advisors use Hearsay — and every single one of them still has the same problem: their content looks like everyone else&rsquo;s. AdvisorOS gives them what Hearsay never will: <strong style={{ color:C.warmWhite }}>a brand that&rsquo;s actually theirs.</strong>
         </div>
       </div>
     </div>
@@ -1463,7 +1463,7 @@ export default function AdvisorOSCommandCenter() {
               </div>
               <div>
                 <div style={{ fontFamily:FD, fontSize:24, color:C.nearBlack }}>AdvisorOS</div>
-                <div style={{ fontSize:12, color:C.midGray, marginTop:1 }}>Project Command Center \u2014 March 2026</div>
+                <div style={{ fontSize:12, color:C.midGray, marginTop:1 }}>Project Command Center — March 2026</div>
               </div>
             </div>
             <div style={{ display:"flex", alignItems:"center", gap:20 }}>
